@@ -8,8 +8,25 @@ import { Space, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import DashboardCard from './Card/DashboardCard';
 import RecentOrders from './RecentOrders/RecentOrders';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
 import BarChart from './BarChart/BarChart';
 import axios from 'axios';
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 const Dashboard = () => {
     const [orders, setOrders] = useState(0);
@@ -17,20 +34,21 @@ const Dashboard = () => {
     const [customers, setCustomers] = useState(0);
     const [revenue, setRevenue] = useState(0);
 
-    const fetchOrders = async () => {
-        const result = await axios.get('https://dummyjson.com/carts/1');
-        setOrders(result.data.total);
-        setRevenue(result.data.discountedTotal);
-    };
-    const fetchInventory = async () => {
-        const result = await axios.get('https://dummyjson.com/products');
-        setInventory(result.data.total);
-    };
-    const fetchCustomers = async () => {
-        const result = await axios.get('https://dummyjson.com/users');
-        setCustomers(result.data.total);
-    };
     useEffect(() => {
+        const fetchOrders = async () => {
+            const result = await axios.get(process.env.REACT_APP_ORDERS_URL);
+            setOrders(result.data.total);
+            setRevenue(result.data.discountedTotal);
+        };
+        const fetchInventory = async () => {
+            const result = await axios.get('https://dummyjson.com/products');
+            setInventory(result.data.total);
+        };
+        const fetchCustomers = async () => {
+            const result = await axios.get('https://dummyjson.com/users');
+            setCustomers(result.data.total);
+        };
+
         fetchOrders();
         fetchInventory();
         fetchCustomers();

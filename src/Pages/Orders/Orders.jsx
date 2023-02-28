@@ -7,7 +7,7 @@ const Orders = () => {
     const [dataSource, setDataSource] = useState([]);
 
     const fetchOrders = async () => {
-        const result = await axios.get('https://dummyjson.com/carts/1');
+        const result = await axios.get(process.env.REACT_APP_ORDERS_URL);
         setDataSource(result.data);
     };
     useEffect(() => {

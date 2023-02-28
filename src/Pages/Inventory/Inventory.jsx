@@ -8,11 +8,9 @@ const Inventory = () => {
 
     const fetchInventory = async () => {
         setIsLoading(true);
-        const result = await axios.get('https://dummyjson.com/products');
+        const result = await axios.get(process.env.REACT_APP_INVENTORY_URL);
         setIsLoading(false);
-        console.log('result', result);
         setDataSource(result.data);
-        console.log('dataSource', dataSource);
     };
     useEffect(() => {
         fetchInventory();
