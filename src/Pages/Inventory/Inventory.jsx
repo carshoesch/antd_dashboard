@@ -7,15 +7,15 @@ const Inventory = () => {
     const [dataSource, setDataSource] = useState([]);
 
     const fetchInventory = async () => {
+        setIsLoading(true);
         const result = await axios.get('https://dummyjson.com/products');
+        setIsLoading(false);
         console.log('result', result);
         setDataSource(result.data);
         console.log('dataSource', dataSource);
     };
     useEffect(() => {
-        setIsLoading(true);
         fetchInventory();
-        setIsLoading(false);
     }, []);
     return (
         <div>

@@ -1,5 +1,5 @@
 import { Space } from 'antd';
-import './App.css';
+import './App.scss';
 import Content from './Components/Content/Content';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';

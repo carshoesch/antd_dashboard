@@ -27,6 +27,13 @@ const BarChart = () => {
                         label: 'Revenue',
                         data: data,
                         backgroundColor: 'rgba(255, 0, 0, 1)',
+                        borderRadius: 5,
+                    },
+                    {
+                        label: 'Revenue 2',
+                        data: data,
+                        backgroundColor: 'green',
+                        borderRadius: 5,
                     },
                 ],
             };
@@ -48,7 +55,7 @@ const BarChart = () => {
         },
     };
     return (
-        <Card style={{ width: 500, height: 450 }}>
+        <Card style={{ width: 900, height: 450 }}>
             <Bar options={options} data={reveneuData} />
         </Card>
     );

@@ -48,7 +48,7 @@ const SideMenu = () => {
                         icon: <ShoppingOutlined />,
                     },
                     {
-                        label: 'customers',
+                        label: 'Customers',
                         key: '/customers',
                         icon: <UserOutlined />,
                     },

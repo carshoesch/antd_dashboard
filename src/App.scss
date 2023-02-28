@@ -30,14 +30,17 @@
 .ant-space-item:has(.sideMenu) {
     align-self: center;
 }
-.sideMenu {
-}
-.routes {
-}
 .content {
     padding-left: 12px;
 }
 
 .order-headline {
     margin-top: 16px;
+}
+.dashboard-card {
+    position: relative;
+    transition: 5s;
+}
+.dashboard-card:hover {
+    top: -5px;
 }

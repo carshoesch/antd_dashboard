@@ -10,7 +10,7 @@ const Header = () => {
             {/* image is a img-tag with other properties */}
             <Image src={dbLogo} width={150} />
             {/* h1 headline */}
-            <Typography.Title>VIER Dashboard</Typography.Title>
+            <Typography.Title>Test Dashboard</Typography.Title>
             <Space>
                 {/* notification number on top right corner of wrapped icon -> can also just display a "dot" instead of number */}
                 <Badge count={10}>

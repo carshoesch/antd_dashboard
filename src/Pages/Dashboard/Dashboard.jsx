@@ -8,37 +8,8 @@ import { Space, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import DashboardCard from './Card/DashboardCard';
 import RecentOrders from './RecentOrders/RecentOrders';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
 import BarChart from './BarChart/BarChart';
 import axios from 'axios';
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-);
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'bottom',
-        },
-        title: {
-            display: true,
-            text: 'Order Revenue',
-        },
-    },
-};
 
 const Dashboard = () => {
     const [orders, setOrders] = useState(0);
@@ -65,10 +36,10 @@ const Dashboard = () => {
         fetchCustomers();
     }, []);
     return (
-        <div>
+        <div className='dashboard-card'>
             <Space size={20} direction='vertical'>
                 <Typography.Title level={4}>Dashboard</Typography.Title>
-                <Space direction='horizontal'>
+                <Space size={20} direction='horizontal'>
                     <DashboardCard
                         title={'Orders'}
                         value={orders}
