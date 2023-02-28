@@ -1,4 +1,3 @@
-import { Space } from 'antd';
 import './App.scss';
 import Content from './Components/Content/Content';
 import Footer from './Components/Footer/Footer';

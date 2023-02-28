@@ -1,19 +1,36 @@
-import { Badge, Drawer, Space, Typography } from 'antd';
-import React, { useState } from 'react';
+import { Badge, Card, Drawer, Space, Statistic, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
 
 import dbLogo from '../../assets/img/VIER-Logo.png';
 import { BellOutlined, MailOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Header = () => {
-    const [openComments, setOpenComments] = useState(false);
+    /**
+     * Notifications = comments
+     * Messages = posts
+     */
+    const [openMessages, setOpenMessages] = useState(false);
     const [openNotif, setOpenNotif] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [notif, setNotif] = useState([]);
 
-    const handleOpenComments = () => {
-        setOpenComments(true);
+    const fetchMessages = async () => {
+        const result = await axios.get(process.env.REACT_APP_MESSAGES_URL);
+        console.log('result', result);
+        setMessages(result.data.posts);
     };
-    const handleCloseComments = () => {
-        setOpenComments(false);
+    const fetchNotif = async () => {
+        const result = await axios.get(process.env.REACT_APP_POSTS_URL);
+        console.log('result', result.data);
+        setNotif(result.data);
+    };
+    const handleOpenMessages = () => {
+        setOpenMessages(true);
+    };
+    const handleCloseMessages = () => {
+        setOpenMessages(false);
     };
     const handleOpenNotif = () => {
         setOpenNotif(true);
@@ -21,13 +38,19 @@ const Header = () => {
     const handleCloseNotif = () => {
         setOpenNotif(false);
     };
+
+    useEffect(() => {
+        openMessages && fetchMessages();
+        openNotif && fetchNotif();
+    }, [openMessages, openNotif]);
     return (
         <div className='header'>
             <Link to={'/'}>
                 {/**
                  *  Image is a img-tag with other properties(zoom in and stuff)
                  * -> decided to use normal img tag */}
-                <img src={dbLogo} width={150} />
+                {/* TODO: use wrapper component to avoid redundant multiplication of components */}
+                <img src={dbLogo} width={150} alt='Website logo' />
             </Link>
             {/* h1 headline */}
             <Typography.Title>Test Dashboard</Typography.Title>
@@ -36,7 +59,7 @@ const Header = () => {
                 <Badge count={10}>
                     <MailOutlined
                         style={{ fontSize: 24 }}
-                        onClick={handleOpenComments}
+                        onClick={handleOpenMessages}
                     />
                 </Badge>
                 <Badge count={20}>
@@ -45,19 +68,39 @@ const Header = () => {
                         onClick={handleOpenNotif}
                     />
                 </Badge>
+                {/* drawers */}
                 <Drawer
-                    title='Comments'
-                    open={openComments}
-                    onClose={handleCloseComments}
+                    title='Messages'
+                    open={openMessages}
+                    onClose={handleCloseMessages}
                 >
-                    This is the Comments Drawer
+                    {/* loop over messages and give title and body. Maybe align tags */}
+                    {messages.map((message) => (
+                        <Space
+                            size={'smal'}
+                            direction='vertical'
+                            style={{
+                                display: 'flex',
+                                gap: '16px',
+                                flexDirection: 'column',
+                            }}
+                        >
+                            <Card
+                                title={message.title}
+                                hoverable
+                                style={{ marginBottom: '24px' }}
+                            >
+                                <span>{message.body}</span>
+                            </Card>
+                        </Space>
+                    ))}
                 </Drawer>
                 <Drawer
                     title='Notifications'
                     open={openNotif}
                     onClose={handleCloseNotif}
                 >
-                    This is the Notifications Drawer
+                    jkl
                 </Drawer>
             </Space>
         </div>
