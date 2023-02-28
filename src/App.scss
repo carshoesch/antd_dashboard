@@ -26,6 +26,13 @@
     flex: 1;
     justify-content: flex-start;
     align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.sideMenu {
+    height: 100%;
+    .sideMenu-vertical {
+        height: 100%;
+    }
 }
 .ant-space-item:has(.sideMenu) {
     align-self: center;

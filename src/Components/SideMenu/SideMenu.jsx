@@ -24,6 +24,8 @@ const SideMenu = () => {
             {/* menu entries need a specific key -> can use the link param as key 
             which makes it easier to use it for the onclick function of each item */}
             <Menu
+                className='sideMenu-vertical'
+                mode='vertical'
                 onClick={(item) => {
                     /* item.key */
                     /* navigate from usenavigate to the selected page */

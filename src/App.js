@@ -10,10 +10,10 @@ function App() {
         <div className='App'>
             <Header />
             {/* is for spacing of components for a unified space */}
-            <Space className='sideMenuAndContent'>
+            <div className='sideMenuAndContent'>
                 <SideMenu></SideMenu>
                 <Content></Content>
-            </Space>
+            </div>
             <Footer />
         </div>
     );
