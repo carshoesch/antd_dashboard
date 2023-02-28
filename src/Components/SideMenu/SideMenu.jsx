@@ -19,6 +19,7 @@ const SideMenu = () => {
     }, [location.pathname]);
     return (
         <div className='sideMenu'>
+            {/* TODO: implement theme change */}
             {/* menu from antd */}
             {/* using antd menu component to render a list of objects to the dedicated place */}
             {/* menu entries need a specific key -> can use the link param as key 
