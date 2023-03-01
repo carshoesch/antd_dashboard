@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const Header = () => {
     /**
-     * Notifications = comments
+     * Notifsications = comments
      * Messages = posts
      */
     const [openMessages, setOpenMessages] = useState(false);
@@ -19,10 +19,10 @@ const Header = () => {
     const fetchMessages = async () => {
         const result = await axios.get(process.env.REACT_APP_MESSAGES_URL);
         console.log('result', result.data);
-        setMessages(result.data.posts);
+        setMessages(result.data.comments);
     };
-    const fetchNotif = async () => {
-        const result = await axios.get(process.env.REACT_APP_POSTS_URL);
+    const fetchNotifs = async () => {
+        const result = await axios.get(process.env.REACT_APP_NOTIF_URL);
         console.log('result', result.data);
         setNotifs(result.data.posts);
         console.log('notifs', notifs);
@@ -42,7 +42,7 @@ const Header = () => {
 
     useEffect(() => {
         openMessages && fetchMessages();
-        openNotifs && fetchNotif();
+        openNotifs && fetchNotifs();
     }, [openMessages, openNotifs]);
     return (
         <div className='header'>
@@ -56,7 +56,7 @@ const Header = () => {
             {/* h1 headline */}
             <Typography.Title>Test Dashboard</Typography.Title>
             <Space>
-                {/* notification number on top right corner of wrapped icon -> can also just display a "dot" instead of number */}
+                {/* Notifsication number on top right corner of wrapped icon -> can also just display a "dot" instead of number */}
                 <Badge count={10}>
                     <MailOutlined
                         style={{ fontSize: 24 }}
@@ -78,11 +78,11 @@ const Header = () => {
                     {/* loop over messages and give title and body. Maybe align tags */}
                     {messages.map((message) => (
                         <Space
-                            size={'smal'}
+                            key={message.id}
+                            size={'small'}
                             direction='vertical'
                             style={{
                                 display: 'flex',
-                                gap: '16px',
                                 flexDirection: 'column',
                             }}
                         >
@@ -103,11 +103,11 @@ const Header = () => {
                 >
                     {notifs.map((notif) => (
                         <Space
-                            size={'smal'}
+                            key={notif.id}
+                            size={'small'}
                             direction='vertical'
                             style={{
                                 display: 'flex',
-                                gap: '16px',
                                 flexDirection: 'column',
                             }}
                         >
@@ -120,7 +120,7 @@ const Header = () => {
                                     <span>{notif.body}</span>
                                     <Space direction='horizontal'>
                                         {notif.tags.map((tag) => (
-                                            <Tag color='processing'>{tag}</Tag>
+                                            <Tag color='processing' key={tag}>{tag}</Tag>
                                         ))}
                                     </Space>
                                 </Space>

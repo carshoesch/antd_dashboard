@@ -3,7 +3,7 @@ import { Card, Space, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
 
 const DashboardCard = ({ title, value, direction, icon, diff }) => {
-    return (
+return (
         <div>
             {/* card is used to have a border around items */}
             <Link to={`/${title}`}>
@@ -18,8 +18,8 @@ const DashboardCard = ({ title, value, direction, icon, diff }) => {
                                 className='difference'
                                 style={{
                                     position: 'absolute',
-                                    top: '0',
-                                    right: '20px',
+                                    top: '20px',
+                                    right: '50px',
                                     color: diff > 0 ? 'green' : 'red',
                                 }}
                             >
