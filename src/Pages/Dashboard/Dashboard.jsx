@@ -90,6 +90,7 @@ const Dashboard = () => {
                                 }}
                             />
                         }
+                        diff={12}
                     />
                     <DashboardCard
                         title={'Customers'}
@@ -106,6 +107,7 @@ const Dashboard = () => {
                                 }}
                             />
                         }
+                        diff={5}
                     />
                     <DashboardCard
                         title={'Revenue'}
@@ -122,6 +124,7 @@ const Dashboard = () => {
                                 }}
                             />
                         }
+                        diff={123}
                     />
                 </Space>
                 <Space>
