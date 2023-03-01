@@ -1,4 +1,4 @@
-import { Badge, Card, Drawer, Space, Statistic, Typography } from 'antd';
+import { Badge, Card, Drawer, Space, Tag, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 import dbLogo from '../../assets/img/VIER-Logo.png';
@@ -12,19 +12,20 @@ const Header = () => {
      * Messages = posts
      */
     const [openMessages, setOpenMessages] = useState(false);
-    const [openNotif, setOpenNotif] = useState(false);
+    const [openNotifs, setOpenNotifs] = useState(false);
     const [messages, setMessages] = useState([]);
-    const [notif, setNotif] = useState([]);
+    const [notifs, setNotifs] = useState([]);
 
     const fetchMessages = async () => {
         const result = await axios.get(process.env.REACT_APP_MESSAGES_URL);
-        console.log('result', result);
+        console.log('result', result.data);
         setMessages(result.data.posts);
     };
     const fetchNotif = async () => {
         const result = await axios.get(process.env.REACT_APP_POSTS_URL);
         console.log('result', result.data);
-        setNotif(result.data);
+        setNotifs(result.data.posts);
+        console.log('notifs', notifs);
     };
     const handleOpenMessages = () => {
         setOpenMessages(true);
@@ -32,17 +33,17 @@ const Header = () => {
     const handleCloseMessages = () => {
         setOpenMessages(false);
     };
-    const handleOpenNotif = () => {
-        setOpenNotif(true);
+    const handleOpenNotifs = () => {
+        setOpenNotifs(true);
     };
-    const handleCloseNotif = () => {
-        setOpenNotif(false);
+    const handleCloseNotifs = () => {
+        setOpenNotifs(false);
     };
 
     useEffect(() => {
         openMessages && fetchMessages();
-        openNotif && fetchNotif();
-    }, [openMessages, openNotif]);
+        openNotifs && fetchNotif();
+    }, [openMessages, openNotifs]);
     return (
         <div className='header'>
             <Link to={'/'}>
@@ -65,7 +66,7 @@ const Header = () => {
                 <Badge count={20}>
                     <BellOutlined
                         style={{ fontSize: 24 }}
-                        onClick={handleOpenNotif}
+                        onClick={handleOpenNotifs}
                     />
                 </Badge>
                 {/* drawers */}
@@ -97,10 +98,35 @@ const Header = () => {
                 </Drawer>
                 <Drawer
                     title='Notifications'
-                    open={openNotif}
-                    onClose={handleCloseNotif}
+                    open={openNotifs}
+                    onClose={handleCloseNotifs}
                 >
-                    jkl
+                    {notifs.map((notif) => (
+                        <Space
+                            size={'smal'}
+                            direction='vertical'
+                            style={{
+                                display: 'flex',
+                                gap: '16px',
+                                flexDirection: 'column',
+                            }}
+                        >
+                            <Card
+                                title={notif.title}
+                                hoverable
+                                style={{ marginBottom: '24px' }}
+                            >
+                                <Space direction='vertical' size={20}>
+                                    <span>{notif.body}</span>
+                                    <Space direction='horizontal'>
+                                        {notif.tags.map((tag) => (
+                                            <Tag color='processing'>{tag}</Tag>
+                                        ))}
+                                    </Space>
+                                </Space>
+                            </Card>
+                        </Space>
+                    ))}
                 </Drawer>
             </Space>
         </div>

@@ -73,6 +73,7 @@ const Dashboard = () => {
                                 }}
                             />
                         }
+                        diff={-5}
                     />
                     <DashboardCard
                         title={'Inventory'}
