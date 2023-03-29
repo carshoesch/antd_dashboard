@@ -11,14 +11,28 @@
     justify-content: space-between;
     align-items: center;
     padding: 4px 20px;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.15);
+    border-bottom: 1px solid var(--border_color);
     height: 50px;
+    background-color: var(--body_background);
+
+    h1 {
+        color: var(--body_color);
+    }
+
+    svg {
+        color: var(--body_color);
+    }
+}
+
+.dashboard_header {
+    color: var(--body_color) !important;
+    opacity: var(--body_color_opacity);
 }
 .footer {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border-top: 1px solid rgb(0, 0, 0, 0.15);
+    border-top: 1px solid var(--border_color);
     height: 50px;
 }
 .sideMenuAndContent {
@@ -26,17 +40,33 @@
     flex: 1;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--body_background);
 }
 .sideMenu {
     height: 100%;
     .sideMenu-vertical {
+        background-color: var(--body_background);
+        color: var(--body_color);
+        opacity: var(--body_color_opacity);
+        border-inline-end: 1px solid var(--border_color) !important;
+        filter: saturate(50%);
         padding-top: 16px;
+
         height: 100%;
     }
 }
 .ant-space-item:has(.sideMenu) {
     align-self: center;
+}
+
+.ant-card {
+    background-color: var(--card_bg) !important;
+    border-color: var(--card_bg);
+
+    div[class^="ant-statistic-"] {
+        color: var(--body_color);
+        opacity: var(--body_color_opacity);
+    }
 }
 .content {
     padding-left: 12px;
@@ -44,6 +74,34 @@
 
 .order-headline {
     margin-top: 16px;
+}
+.ant-table {
+    background-color: var(--body_background) !important;
+}
+.ant-table-thead {
+    .ant-table-cell {
+        border-start-end-radius: 0;
+        background-color: var(--card_bg) !important;
+        color: var(--body_color) !important;
+    }
+}
+.ant-table-cell {
+    background: var(--card_bg);
+    color: var(--body_color);
+}
+
+.ant-table-row {
+
+    &:hover {
+        .ant-table-cell {
+            background-color: var(--body_background) !important;
+        }
+    }
+
+    .ant-table-cell {
+        background: var(--card_bg) !important;
+        color: var(--body_color) !important;
+    }
 }
 .dashboard-card {
     position: relative;

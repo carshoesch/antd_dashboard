@@ -56,7 +56,7 @@ const Dashboard = () => {
     return (
         <div className='dashboard-card'>
             <Space size={20} direction='vertical'>
-                <Typography.Title level={4}>Dashboard</Typography.Title>
+                <Typography.Title level={4} className='dashboard_header' >Dashboard</Typography.Title>
                 <Space size={20} direction='horizontal'>
                     <DashboardCard
                         title={'Orders'}

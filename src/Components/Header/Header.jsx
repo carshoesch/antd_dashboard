@@ -1,10 +1,10 @@
-import { Badge, Card, Drawer, Space, Statistic, Typography } from 'antd';
+import { Badge, Card, Drawer, Space, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
-
 import dbLogo from '../../assets/img/VIER-Logo.png';
 import { BellOutlined, MailOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import SetMode from '../Mode/SetMode';
 
 const Header = () => {
     /**
@@ -16,14 +16,17 @@ const Header = () => {
     const [messages, setMessages] = useState([]);
     const [notif, setNotif] = useState([]);
 
+    useEffect(() => {
+        openMessages && fetchMessages();
+        openNotif && fetchNotif();
+    }, [openMessages, openNotif]);
+
     const fetchMessages = async () => {
         const result = await axios.get(process.env.REACT_APP_MESSAGES_URL);
-        console.log('result', result);
         setMessages(result.data.posts);
     };
     const fetchNotif = async () => {
         const result = await axios.get(process.env.REACT_APP_POSTS_URL);
-        console.log('result', result.data);
         setNotif(result.data);
     };
     const handleOpenMessages = () => {
@@ -39,10 +42,6 @@ const Header = () => {
         setOpenNotif(false);
     };
 
-    useEffect(() => {
-        openMessages && fetchMessages();
-        openNotif && fetchNotif();
-    }, [openMessages, openNotif]);
     return (
         <div className='header'>
             <Link to={'/'}>
@@ -68,6 +67,7 @@ const Header = () => {
                         onClick={handleOpenNotif}
                     />
                 </Badge>
+                <SetMode />
                 {/* drawers */}
                 <Drawer
                     title='Messages'
@@ -77,6 +77,7 @@ const Header = () => {
                     {/* loop over messages and give title and body. Maybe align tags */}
                     {messages.map((message) => (
                         <Space
+                            key={message.title}
                             size={'smal'}
                             direction='vertical'
                             style={{

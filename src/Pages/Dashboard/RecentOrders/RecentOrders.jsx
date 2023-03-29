@@ -18,7 +18,7 @@ const RecentOrders = () => {
     return (
         <div>
             <Card style={{ width: 500, height: 450 }}>
-                <Typography.Text>Recent Orders</Typography.Text>
+                <Typography.Text className='dashboard_header'>Recent Orders</Typography.Text>
                 <Table
                     columns={[
                         {
