@@ -4,7 +4,7 @@ import dbLogo from '../../assets/img/VIER-Logo.png';
 import { BellOutlined, MailOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { BsMoon, BsMoonFill } from 'react-icons/bs'
+import { BsMoon, BsMoonFill } from 'react-icons/bs';
 import SetMode from '../Mode/SetMode';
 
 const Header = () => {

@@ -1,0 +1,19 @@
+.clockWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    color: #fff;
+    border: 1px solid #fafafa;
+    max-width: 300px;
+    padding: 16px;
+    margin-top: 16px;
+    border-radius: 5px;
+
+    .clock__edit {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: orange;
+    }
+}
